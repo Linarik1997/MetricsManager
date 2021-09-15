@@ -1,21 +1,23 @@
-using MetricsManager.Controllers;
+﻿using MetricsManager.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Xunit;
 
-namespace MetricsManagerTests
+namespace MetricsManagerTest
 {
-    public class CpuMetricsControllerUnitTest
+    public abstract class MetricsManagerControllerUnitTest
     {
-        private CpuMetricsController _controller;
-
-        public CpuMetricsControllerUnitTest()
+        private MetricsManagerController _controller;
+        public MetricsManagerControllerUnitTest()
         {
             _controller = new();
         }
-
         [Fact]
-        public void GetMetricsFromAgentByPeriod_ReturnsOk()
+        public virtual void GetMetricsFromAgentByPeriod_ReturnsOk()
         {
             //Arrange
             var agentId = 1;
@@ -28,9 +30,8 @@ namespace MetricsManagerTests
             //Assert
             Assert.IsAssignableFrom<IActionResult>(result);
         }
-
         [Fact]
-        public void GetMetricsFromClusterByPeriod_ReturnsOk()
+        public virtual void GetMetricsFromClusterByPeriod_ReturnsOk()
         {
             //Arrange
             var fromTime = TimeSpan.FromSeconds(0);
@@ -42,9 +43,8 @@ namespace MetricsManagerTests
             //Assert
             Assert.IsAssignableFrom<IActionResult>(result);
         }
-
         [Fact]
-        public void GetMetricsFromAgentByAllTime_ReturnsOk()
+        public virtual void GetMetricsFromAgentByAllTime_ReturnsOk()
         {
             //Arrange
             var agentId = 1;
@@ -55,9 +55,8 @@ namespace MetricsManagerTests
             //Assert
             Assert.IsAssignableFrom<IActionResult>(result);
         }
-
         [Fact]
-        public void GetMetricsFromClusterByAllTime_ReturnsOk()
+        public virtual void GetMetricsFromClusterByAllTime_ReturnsOk()
         {
             //Arrange
 
@@ -67,6 +66,5 @@ namespace MetricsManagerTests
             //Assert
             Assert.IsAssignableFrom<IActionResult>(result);
         }
-
     }
 }

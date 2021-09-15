@@ -21,7 +21,7 @@ namespace MetricsAgentTest
             var toTime = TimeSpan.FromSeconds(10);
 
             //Act
-            var result = _controller.GetMetric(fromTime, toTime);
+            var result = _controller.GetMetrics(fromTime, toTime);
 
             //Assert
             Assert.IsAssignableFrom<IActionResult>(result);

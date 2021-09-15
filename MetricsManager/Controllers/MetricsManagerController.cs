@@ -7,30 +7,29 @@ using System.Threading.Tasks;
 
 namespace MetricsManager.Controllers
 {
-    [Route("api/hdd/metrics")]
-    [ApiController]
-    public class HddMetricsController : ControllerBase
+    public class MetricsManagerController : ControllerBase
     {
         [HttpGet("agent/{agentId}/from/{fromTime}/to/{toTime}")]
-        public IActionResult GetMetricsFromAgent([FromRoute] int agentId, [FromRoute] TimeSpan fromTime, [FromRoute] TimeSpan toTime)
+        public virtual IActionResult GetMetricsFromAgent([FromRoute] int agentId, [FromRoute] TimeSpan fromTime, [FromRoute] TimeSpan toTime)
         {
             return Ok();
         }
 
         [HttpGet("cluster/from/{fromTime}/to/{toTime}")]
-        public IActionResult GetMetricsFromCluster([FromRoute] TimeSpan fromTime, [FromRoute] TimeSpan toTime)
+        public virtual IActionResult GetMetricsFromCluster([FromRoute] TimeSpan fromTime, [FromRoute] TimeSpan toTime)
         {
             return Ok();
         }
 
+
         [HttpGet("agent/{agentId}")]
-        public IActionResult GetMetricsFromAgent([FromRoute] int agentId)
+        public virtual IActionResult GetMetricsFromAgent([FromRoute] int agentId)
         {
             return Ok();
         }
 
         [HttpGet("cluster")]
-        public IActionResult GetMetricsFromCluster()
+        public virtual IActionResult GetMetricsFromCluster()
         {
             return Ok();
         }

@@ -9,13 +9,9 @@ namespace MetricsAgent.Controllers
 {
     [Route("api/cpu/metrics")]
     [ApiController]
-    public class CpuMetricsController : ControllerBase
+    public class CpuMetricsController : MetricsAgentController
     {
-        [HttpGet("from/{fromTime}/to/{toTime}")]
-        public IActionResult GetMetric([FromRoute] TimeSpan fromTime, [FromRoute] TimeSpan toTime)
-        {
-            return Ok();
-        }
+
     }
 }
 
