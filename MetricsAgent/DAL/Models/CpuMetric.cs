@@ -5,13 +5,16 @@ using System.Threading.Tasks;
 
 namespace MetricsAgent.Models
 {
-    public class CpuMetric: BaseModel
+    public class CpuMetric: T
     {
         public CpuMetric(): base()
         {
-            var random = new Random();
-            Value = random.NextDouble();
-            Dt = DateTime.Now;
+
+        }
+        public CpuMetric(double val, TimeSpan time): base(val, time)
+        {
+            Value = val;
+            Dt = time;
         }
     }
 }

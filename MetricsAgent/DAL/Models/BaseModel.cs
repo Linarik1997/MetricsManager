@@ -5,16 +5,16 @@ using System.Threading.Tasks;
 
 namespace MetricsAgent.Models
 {
-    public abstract class BaseModel
+    public abstract class T
     {
-        public int? Id { get; set; }
-        public double Value { get; set; }
-        public DateTime Dt { get; set; }
-        public BaseModel()
+        public virtual int? Id { get; set; }
+        public virtual double Value { get; set; }
+        public virtual TimeSpan Dt { get; set; }
+        public T()
         {
 
         }
-        public BaseModel(double val, DateTime dt)
+        public T(double val, TimeSpan dt)
         {
             Value = val;
             Dt = dt;
