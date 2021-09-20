@@ -1,36 +1,24 @@
 using System;
-using MetricsAgent.Controllers;
-using Microsoft.AspNetCore.Mvc;
+using Core.Controllers;
 using Xunit;
 using Moq;
-using MetricsAgent.DAL.Interfaces;
-using MetricsAgent.Models;
+using Core.Models;
 using Microsoft.Extensions.Logging;
+using Core.Interfaces;
+using Core.DAL.Repositories;
 
 namespace MetricsAgentTest
 {
     public class CpuMetricsControllerUnitTest
     {
         private CpuMetricsController _controller;
-        private Mock<IÑpuMetricRepository> mock;
+        private Mock<IDbTest> mock;
         public CpuMetricsControllerUnitTest()
         {
-
-            mock = new Mock<IÑpuMetricRepository>();
+            mock = new Mock<IDbTest>();
             var mocklog = new Mock<ILogger<CpuMetricsController>>();
             _controller = new CpuMetricsController(mock.Object,mocklog.Object);
         }
 
-        [Fact]
-        public void Create_ShouldCall_Create_From_Repository()
-        {
-            mock.Setup(repo => repo.Create(It.IsAny<CpuMetric>())).Verifiable();
-            var result = _controller.Create(new MetricsAgent.Requests.MetricCreateRequest
-            {
-                Dt = TimeSpan.FromSeconds(1),
-                Value = 50
-            });
-            mock.Verify(repository => repository.Create(It.IsAny<CpuMetric>()), Times.AtMostOnce());
-        }
     }
 }
