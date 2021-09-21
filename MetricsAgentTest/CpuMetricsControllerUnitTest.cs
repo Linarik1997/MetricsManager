@@ -1,11 +1,12 @@
 using System;
-using Core.Controllers;
+using DB.Controllers;
 using Xunit;
 using Moq;
-using Core.Models;
+using DB.Models;
 using Microsoft.Extensions.Logging;
-using Core.Interfaces;
-using Core.DAL.Repositories;
+using DB.Interfaces;
+using DB.DAL.Repositories;
+using MertricAgentServices.Mapper;
 
 namespace MetricsAgentTest
 {
@@ -17,7 +18,8 @@ namespace MetricsAgentTest
         {
             mock = new Mock<IDbTest>();
             var mocklog = new Mock<ILogger<CpuMetricsController>>();
-            _controller = new CpuMetricsController(mock.Object,mocklog.Object);
+            var mapper = new MetricMapper();
+            _controller = new CpuMetricsController(mock.Object,mapper,mocklog.Object);
         }
 
     }

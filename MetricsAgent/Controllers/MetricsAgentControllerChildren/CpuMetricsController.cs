@@ -1,69 +1,54 @@
-﻿using Core.Interfaces;
-using Core.Models;
-using Core.Requests;
+﻿using DB.Interfaces;
+using DB.Models;
+using MertricAgentServices.Dto;
+using MertricAgentServices.Mapper;
+using MertricAgentServices.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Core.Controllers
+namespace DB.Controllers
 {
     [Route("api/cpu/metrics")]
     [ApiController]
-    public class CpuMetricsController : MetricsAgentController<CpuMetric>
+    public class CpuMetricsController
     {
-        private new readonly IDbRepository<CpuMetric>  _repo;
+        private readonly CpuMetricService _service;
 
         private readonly  ILogger<CpuMetricsController> _logger;
 
-        public CpuMetricsController(IDbRepository<CpuMetric> repository, ILogger<CpuMetricsController> logger): base(repository)
+        public CpuMetricsController(IDbRepository<CpuMetric> repository, IMetricMapper mapper, ILogger<CpuMetricsController> logger)
         {
             _logger = logger;
-            _repo = repository;
             _logger.LogInformation("Logger is turned on");
+            _service = new(mapper, repository);
         }
-        [HttpPost("create")]
-        public override Task Create([FromBody] CpuMetric request)
+        [HttpPost]
+        public async Task CreateAsync([FromBody] CpuDto request)
         {
-            try
-            {
-                return base.Create(request);
-            }
-            catch(Exception e)
-            {
-                _logger.LogError($"Unexpected error {e.Message} " +
-                    $"during MetricsAgent.Controllers.CpuMetricsController.Create method");
-                throw;
-            }
+             await _service.AddAsync(request);
         }
-        [HttpGet("all")]
-        public override Task<List<CpuMetric>> GetAll()
+        [HttpGet]
+        public List<CpuMetric> Get()
         {
-            try
-            {
-                return base.GetAll();
-            }
-            catch (Exception e)
-            {
-                _logger.LogError($"Unexpected error {e.Message} " +
-                    $"during MetricsAgent.Controllers.CpuMetricsController.Create method");
-                throw;
-            }
+           return _service.Get();
         }
         [HttpGet("from/{fromTime}/to/{toTime}")]
-        public override Task<List<CpuMetric>> GetMetrics([FromRoute] TimeSpan fromTime, [FromRoute] TimeSpan toTime)
+        public Task<List<CpuMetric>> GetMetrics([FromRoute] TimeSpan fromTime, [FromRoute] TimeSpan toTime)
         {
-            try
-            {
-                return base.GetMetrics(fromTime, toTime);
-            }
-            catch (Exception e)
-            {
-                _logger.LogError($"Unexpected error {e.Message} " +
-                    $"during MetricsAgent.Controllers.CpuMetricsController.Create method");
-                throw;
-            }
+            return _service.GetMetricsInTimeRange(fromTime.Ticks, toTime.Ticks);
+        }
+        [HttpPut("update")]
+        public async Task UpdateAsync(CpuDto request)
+        {
+            await _service.UpdateAsync(request);
+        }
+        [HttpDelete]
+        public async Task DeleteAsync(CpuDto request)
+        {
+            await _service.DeleteAsync(request);
         }
 
     }

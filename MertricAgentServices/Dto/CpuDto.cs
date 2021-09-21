@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
-namespace DB.Models
+namespace MertricAgentServices.Dto
 {
-    /// <summary>
-    /// Сущность Метрики нагруженности процессора
-    /// </summary>
-    public class CpuMetric: BaseEntity
+    public class CpuDto:BaseDto
     {
         /// <summary>
         /// % Использования ЦП
@@ -17,8 +15,15 @@ namespace DB.Models
         /// <summary>
         /// Время сохранения метрики
         /// </summary>
-        public long Dt { get; set; }
-        public CpuMetric(): base()
+        public DateTime Dt { get; set; }
+        public long Epoch { 
+            get
+            {
+                var epoch = Dt - new DateTime(1970, 1, 1, 0, 0, 0);
+                return (long)epoch.TotalSeconds;
+            } 
+        }
+        public CpuDto() : base()
         {
 
         }

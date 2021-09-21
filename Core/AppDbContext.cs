@@ -1,7 +1,8 @@
-﻿using Core.Models;
+﻿using DB.Models;
 using Microsoft.EntityFrameworkCore;
+using Npgsql;
 
-namespace Core
+namespace DB
 {
     public sealed class AppDbContext: DbContext
     {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
-namespace Core.Migrations
+namespace DB.Migrations
 {
     public partial class initial : Migration
     {
@@ -14,7 +14,7 @@ namespace Core.Migrations
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Value = table.Column<double>(type: "double precision", nullable: false),
-                    Dt = table.Column<double>(type: "double precision", nullable: false)
+                    Dt = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {

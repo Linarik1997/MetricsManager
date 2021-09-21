@@ -1,6 +1,7 @@
-using Core.DAL.Repositories;
-using Core.Interfaces;
-using Core.Models;
+using DB.DAL.Repositories;
+using DB.Interfaces;
+using DB.Models;
+using MertricAgentServices.Mapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -9,7 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 
-namespace Core
+namespace DB
 {
     public class Startup
     {
@@ -27,8 +28,8 @@ namespace Core
 
             services.AddDbContext<AppDbContext>(options => 
                 options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"),
-                 optionsBuilder => optionsBuilder.MigrationsAssembly("Core")));
-
+                 optionsBuilder => optionsBuilder.MigrationsAssembly("DB")));
+            services.AddScoped<IMetricMapper, MetricMapper>();
             services.AddScoped<IDbRepository<CpuMetric>, DbRepository<CpuMetric>>();
 
             services.AddSwaggerGen(c =>

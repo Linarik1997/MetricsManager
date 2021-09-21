@@ -1,10 +1,10 @@
-﻿using Core.Interfaces;
-using Core.Models;
+﻿using DB.Interfaces;
+using DB.Models;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Core.DAL.Repositories
+namespace DB.DAL.Repositories
 {
     public class DbRepository<TEntity> : IDbRepository<TEntity> where TEntity : BaseEntity
     {
@@ -26,7 +26,7 @@ namespace Core.DAL.Repositories
             await _context.SaveChangesAsync();
         }
         /// <inheritdoc/>
-        public IQueryable<TEntity> GetAll()
+        public IQueryable<TEntity> Get()
         {
             return _context.Set<TEntity>().AsQueryable();
         }
