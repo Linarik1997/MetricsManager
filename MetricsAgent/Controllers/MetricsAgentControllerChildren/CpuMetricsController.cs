@@ -36,9 +36,13 @@ namespace DB.Controllers
            return _service.Get();
         }
         [HttpGet("from/{fromTime}/to/{toTime}")]
-        public Task<List<CpuMetric>> GetMetrics([FromRoute] TimeSpan fromTime, [FromRoute] TimeSpan toTime)
+        public Task<List<CpuMetric>> GetMetrics(
+            [FromRoute] DateTime fromTime, 
+            [FromRoute] DateTime toTime)
         {
-            return _service.GetMetricsInTimeRange(fromTime.Ticks, toTime.Ticks);
+            var from = (long)(fromTime - new DateTime(1970, 1, 1, 0, 0, 0)).TotalSeconds;
+            var to = (long)(toTime - new DateTime(1970, 1, 1, 0, 0, 0)).TotalSeconds;
+            return _service.GetMetricsInTimeRange(from,to);
         }
         [HttpPut("update")]
         public async Task UpdateAsync(CpuDto request)
