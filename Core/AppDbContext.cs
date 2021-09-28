@@ -15,6 +15,7 @@ namespace DB
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<CpuMetric>().HasKey(mk => new { mk.Id });
         }
     }
 }

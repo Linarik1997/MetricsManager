@@ -1,5 +1,6 @@
 ﻿using DB.Interfaces;
 using DB.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -33,7 +34,7 @@ namespace DB.DAL.Repositories
         /// <inheritdoc/>
         public async Task UpdateAsync(TEntity entity)
         {
-            await Task.Run(() => _context.Set<TEntity>().Update(entity));
+            _context.Entry(entity).State = EntityState.Modified;
             await _context.SaveChangesAsync();
         }
     }

@@ -2,6 +2,8 @@ using DB.DAL.Repositories;
 using DB.Interfaces;
 using DB.Models;
 using MertricAgentServices.Mapper;
+using MertricAgentServices.Jobs;
+using MertricAgentServices.MetricJobs;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +11,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Quartz.Spi;
+using Quartz;
+using Quartz.Impl;
 
 namespace DB
 {
@@ -25,11 +30,24 @@ namespace DB
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-
+            // Инжекция контекста БД
             services.AddDbContext<AppDbContext>(options => 
                 options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"),
                  optionsBuilder => optionsBuilder.MigrationsAssembly("DB")));
+            // Инжекция сервиса маппера
             services.AddScoped<IMetricMapper, MetricMapper>();
+
+            // Инжекуция сервиса Джобов
+            services.AddSingleton<IJobFactory, JobFactory>();
+            services.AddSingleton<ISchedulerFactory, StdSchedulerFactory>();
+            // Инжекция задач 
+            services.AddSingleton<CpuMetricJob>();
+            services.AddSingleton(new JobSchedule(
+                jobtype: typeof(CpuMetricJob),
+                cronExpression: "0/5 * * * * ?"));//каждые 5 секунд
+            services.AddHostedService<QuartzHostedService>();
+
+            // Инжекция сервиса взаимодействия с репозиторием  
             services.AddScoped<IDbRepository<CpuMetric>, DbRepository<CpuMetric>>();
 
             services.AddSwaggerGen(c =>

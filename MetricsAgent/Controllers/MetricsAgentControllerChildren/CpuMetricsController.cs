@@ -19,7 +19,9 @@ namespace DB.Controllers
 
         private readonly  ILogger<CpuMetricsController> _logger;
 
-        public CpuMetricsController(IDbRepository<CpuMetric> repository, IMetricMapper mapper, ILogger<CpuMetricsController> logger)
+        public CpuMetricsController(IDbRepository<CpuMetric> repository, 
+            IMetricMapper mapper, 
+            ILogger<CpuMetricsController> logger)
         {
             _logger = logger;
             _logger.LogInformation("Logger is turned on");
@@ -45,14 +47,14 @@ namespace DB.Controllers
             return _service.GetMetricsInTimeRange(from,to);
         }
         [HttpPut("update")]
-        public async Task UpdateAsync(CpuDto request)
+        public async Task UpdateAsync(long id, CpuDto request)
         {
-            await _service.UpdateAsync(request);
+            await _service.UpdateAsync(id,request);
         }
         [HttpDelete]
-        public async Task DeleteAsync(CpuDto request)
+        public async Task DeleteAsync(long id)
         {
-            await _service.DeleteAsync(request);
+            await _service.DeleteAsync(id);
         }
 
     }

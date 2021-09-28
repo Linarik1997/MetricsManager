@@ -14,7 +14,9 @@ namespace MertricAgentServices.Mapper
         public MetricMapper()
         {
             var config = new MapperConfiguration(cfg =>
-                cfg.CreateMap<CpuDto, CpuMetric>().ForMember(src => src.Dt, opt => opt.MapFrom(src => src.Epoch)));
+                cfg.CreateMap<CpuDto, CpuMetric>().
+                    ForMember(src => src.Dt, opt => opt.MapFrom(src => src.Epoch)).
+                    IgnoreAllPropertiesWithAnInaccessibleSetter());
             Mapper = config.CreateMapper();
         }
         public IConfigurationProvider ConfigurationProvider => Mapper.ConfigurationProvider;
