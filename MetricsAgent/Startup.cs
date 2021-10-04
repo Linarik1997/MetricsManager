@@ -14,6 +14,7 @@ using Microsoft.OpenApi.Models;
 using Quartz.Spi;
 using Quartz;
 using Quartz.Impl;
+using System.Net.Http;
 
 namespace DB
 {
@@ -30,6 +31,7 @@ namespace DB
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddHttpClient();
             // Инжекция контекста БД
             services.AddDbContext<AppDbContext>(options => 
                 options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"),
@@ -38,14 +40,14 @@ namespace DB
             services.AddScoped<IMetricMapper, MetricMapper>();
 
             // Инжекуция сервиса Джобов
-            services.AddSingleton<IJobFactory, JobFactory>();
-            services.AddSingleton<ISchedulerFactory, StdSchedulerFactory>();
+            //services.AddSingleton<IJobFactory, JobFactory>();
+            //services.AddSingleton<ISchedulerFactory, StdSchedulerFactory>();
             // Инжекция задач 
-            services.AddSingleton<CpuMetricJob>();
-            services.AddSingleton(new JobSchedule(
-                jobtype: typeof(CpuMetricJob),
-                cronExpression: "0/5 * * * * ?"));//каждые 5 секунд
-            services.AddHostedService<QuartzHostedService>();
+            //services.AddSingleton<CpuMetricJob>();
+            //services.AddSingleton(new JobSchedule(
+                //jobtype: typeof(CpuMetricJob),
+                //cronExpression: "0/5 * * * * ?"));//каждые 5 секунд
+            //services.AddHostedService<QuartzHostedService>();
 
             // Инжекция сервиса взаимодействия с репозиторием  
             services.AddScoped<IDbRepository<CpuMetric>, DbRepository<CpuMetric>>();
@@ -67,11 +69,7 @@ namespace DB
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "MetricsAgent v1"));
             }
 
-            app.UseHttpsRedirection();
-
             app.UseRouting();
-
-            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

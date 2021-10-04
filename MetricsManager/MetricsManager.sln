@@ -3,20 +3,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31424.327
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetricsManager", "MetricsManager.csproj", "{F7F5D51D-244E-4C72-B103-129E3F5E1117}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetricsAgent", "..\MetricsAgent\MetricsAgent.csproj", "{4550B6C6-0600-4F88-A55A-43FECF82099F}"
 	ProjectSection(ProjectDependencies) = postProject
 		{F01DE5A0-015A-407A-9FE7-1EECC113E857} = {F01DE5A0-015A-407A-9FE7-1EECC113E857}
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetricsManagerTest", "..\MetricsManagerTest\MetricsManagerTest.csproj", "{DF9A9059-68EF-4030-87FB-7A393CA9F18E}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetricsAgentTest", "..\MetricsAgentTest\MetricsAgentTest.csproj", "{B1C6D0CA-DBC1-4000-B667-D78651E9133D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DB", "..\Core\DB.csproj", "{7A7DA683-DBB9-4445-8747-7CED15120DE2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MertricAgentServices", "..\MertricAgentServices\MertricAgentServices.csproj", "{F01DE5A0-015A-407A-9FE7-1EECC113E857}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MertricAgentServices", "..\MertricAgentServices\MertricAgentServices.csproj", "{F01DE5A0-015A-407A-9FE7-1EECC113E857}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,18 +20,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F7F5D51D-244E-4C72-B103-129E3F5E1117}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F7F5D51D-244E-4C72-B103-129E3F5E1117}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F7F5D51D-244E-4C72-B103-129E3F5E1117}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F7F5D51D-244E-4C72-B103-129E3F5E1117}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4550B6C6-0600-4F88-A55A-43FECF82099F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4550B6C6-0600-4F88-A55A-43FECF82099F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4550B6C6-0600-4F88-A55A-43FECF82099F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4550B6C6-0600-4F88-A55A-43FECF82099F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DF9A9059-68EF-4030-87FB-7A393CA9F18E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DF9A9059-68EF-4030-87FB-7A393CA9F18E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DF9A9059-68EF-4030-87FB-7A393CA9F18E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DF9A9059-68EF-4030-87FB-7A393CA9F18E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B1C6D0CA-DBC1-4000-B667-D78651E9133D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B1C6D0CA-DBC1-4000-B667-D78651E9133D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B1C6D0CA-DBC1-4000-B667-D78651E9133D}.Release|Any CPU.ActiveCfg = Release|Any CPU

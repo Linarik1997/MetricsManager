@@ -29,6 +29,7 @@ namespace MetricsManager
         {
 
             services.AddControllers();
+            services.AddHttpClient();
             services.AddSingleton<AgentStorage>();
             services.AddSwaggerGen(c =>
             {
