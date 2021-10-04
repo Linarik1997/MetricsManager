@@ -1,18 +1,18 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31424.327
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetricsAgent", "..\MetricsAgent\MetricsAgent.csproj", "{4550B6C6-0600-4F88-A55A-43FECF82099F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetricsAgent", "MetricsAgent\MetricsAgent.csproj", "{4550B6C6-0600-4F88-A55A-43FECF82099F}"
 	ProjectSection(ProjectDependencies) = postProject
 		{F01DE5A0-015A-407A-9FE7-1EECC113E857} = {F01DE5A0-015A-407A-9FE7-1EECC113E857}
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetricsAgentTest", "..\MetricsAgentTest\MetricsAgentTest.csproj", "{B1C6D0CA-DBC1-4000-B667-D78651E9133D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetricsAgentTest", "MetricsAgentTest\MetricsAgentTest.csproj", "{B1C6D0CA-DBC1-4000-B667-D78651E9133D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DB", "..\Core\DB.csproj", "{7A7DA683-DBB9-4445-8747-7CED15120DE2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DB", "Core\DB.csproj", "{7A7DA683-DBB9-4445-8747-7CED15120DE2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MertricAgentServices", "..\MertricAgentServices\MertricAgentServices.csproj", "{F01DE5A0-015A-407A-9FE7-1EECC113E857}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MertricAgentServices", "MertricAgentServices\MertricAgentServices.csproj", "{F01DE5A0-015A-407A-9FE7-1EECC113E857}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
